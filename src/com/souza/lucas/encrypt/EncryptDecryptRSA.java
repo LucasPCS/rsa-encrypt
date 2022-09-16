@@ -38,7 +38,7 @@ public class EncryptDecryptRSA {
         }
     }
 
-    public static byte[] encrypt(String message, PublicKey publicKey) {
+    public static byte[] encrypt(String message, PublicKey publicKey) throws Exception {
         byte[] cipherText = null;
 
         try {
@@ -46,21 +46,21 @@ public class EncryptDecryptRSA {
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
             cipherText = cipher.doFinal(message.getBytes());
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new Exception("Erro ao encriptar a mensagem: " + e);
         }
 
         return cipherText;
     }
 
-    public static String decrypt(byte[] message, PrivateKey privateKey) {
+    public static String decrypt(byte[] message, PrivateKey privateKey) throws Exception {
         byte[] decryptedText = null;
 
         try {
             final Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
             decryptedText = cipher.doFinal(message);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            throw new Exception("Erro ao decriptar a mensagem: " + e);
         }
 
         return new String(decryptedText);
