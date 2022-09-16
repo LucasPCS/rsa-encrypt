@@ -23,6 +23,7 @@ public class EncryptDecryptRSA {
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+            System.out.println("Insira uma mensagem para criptografia:");
             String message = reader.readLine();
 
             byte[] encryptedMessage = encrypt(message, publicKey);
